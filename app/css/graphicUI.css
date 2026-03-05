@@ -20,14 +20,6 @@
     border-radius: 30px;
 }
 
-.graph-plot-area {
-    background: #ffffff;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    padding: 10px;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-}
-
 .graph-legend {
     margin-top: 25px;
     text-align: left;

@@ -16,9 +16,8 @@ const Graphic: React.FC<GraphicProps> = ({ radius = 0.01 }) => {
                 <Latex>{String.raw`График зависимости $F(L) = \frac{kR^4}{L^4}$, при $R = ${radius}$ м`}</Latex>
             </div>
 
-            <div className="graph-plot-area">
-                <PhysicsGraph Radius={radius} />
-            </div>
+            <PhysicsGraph Radius={radius} />
+
 
             <div className="graph-legend">
                 <div className="legend-item">

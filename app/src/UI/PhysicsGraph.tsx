@@ -12,36 +12,43 @@ const PhysicsGraph: React.FC<PhysicsGraphProps> = ({ Radius }) => {
     const updateGraph = () => {
       if (!containerRef.current) return;
 
-      // Очищаем и берем текущую ширину родительского контейнера
       containerRef.current.innerHTML = '';
-      const parentWidth = containerRef.current.offsetWidth;
+
+      const screenWidth = window.innerWidth;
+      const isMobile = screenWidth < 600;
+
+      const width = isMobile ? screenWidth - 20 : (screenWidth > 800 ? 600 : screenWidth - 100);
       
-      // Вычисляем ширину: берем ширину контейнера, но не больше 600px
-      const width = parentWidth > 600 ? 600 : parentWidth - 20; 
-      const height = width * 0.7; // Сохраняем пропорции
+      const height = isMobile ? width * 1.3 : width * 0.7;
 
       const currentEquation = `(165 * ${Math.pow(Radius, 4)}) / (x^4)`;
       const maxF = (165 * Math.pow(Radius, 4)) / Math.pow(0.045, 4);
 
       try {
-        functionPlot({
+        (functionPlot as any)({
           target: containerRef.current,
           width: width,
           height: height,
           grid: true,
           disableZoom: true,
+          
+          margin: { top: 40, right: 30, bottom: 60, left: 80 },
+
           xAxis: {
             label: 'L, м',
             domain: [0.03, 0.12],
           },
           yAxis: {
             label: 'F, Н',
-            domain: [-0.05, Math.max(maxF * 1.2, 0.5)],
+            domain: [-0.05, Math.max(maxF * 1.4, 0.6)],
           },
           data: [
             {
               fn: currentEquation,
               color: '#0066cc',
+              attr: { 
+                "stroke-width": isMobile ? 5 : 2.5
+              }
             },
             {
               points: [
@@ -50,29 +57,50 @@ const PhysicsGraph: React.FC<PhysicsGraphProps> = ({ Radius }) => {
               ],
               fnType: 'points',
               graphType: 'scatter',
-              color: 'red',
+              color: '#ff0000',
+              attr: { 
+                r: isMobile ? 8 : 4
+              }
             },
           ],
         });
+
+        const svg = containerRef.current.querySelector('svg');
+        if (svg) {
+            svg.style.overflow = 'visible';
+            const textElements = svg.querySelectorAll('text');
+            textElements.forEach((t: any) => {
+                t.style.fontSize = isMobile ? '16px' : '14px';
+                t.style.fontWeight = isMobile ? 'bold' : 'normal';
+                t.style.fontFamily = 'sans-serif';
+            });
+        }
+
       } catch (error) {
-        console.error(error);
+        console.error('Ошибка рендеринга графика:', error);
       }
     };
 
+    // Первый запуск
     updateGraph();
-    
-    // Добавляем слушатель, чтобы график перерисовывался при повороте телефона
+
     window.addEventListener('resize', updateGraph);
     return () => window.removeEventListener('resize', updateGraph);
 
   }, [Radius]);
 
   return (
-    <div
-      ref={containerRef} 
-      style={{ width: '100%', display: 'flex', justifyContent: 'center' }} 
-    />
-  );
+  <div
+    ref={containerRef} 
+    className="physics-graph-wrapper"
+    style={{ 
+      background: 'transparent',
+      display: 'flex', 
+      justifyContent: 'center',
+      width: '100%'
+    }} 
+  />
+);
 };
 
 export default PhysicsGraph;
