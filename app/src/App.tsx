@@ -1,24 +1,31 @@
 import React from 'react';
-import Latex from 'react-latex-next';
-import PhysicsGraph from './PhysicsGraph';
 import 'katex/dist/katex.min.css';
+import Graphic from './UI/Graphic';
+import Input from './UI/Input';
+import { useState } from 'react';
 
 const App: React.FC = () => {
+  const [radiusMetreParamGrath, setRadiusMetreParamGrath] = useState<number>(0.01)
+
+  function TargetInput(event:any){
+    if(event.target.value > 0.001){
+      const newRadius:number = event.target.value
+      setRadiusMetreParamGrath(newRadius)
+    }
+  }
+
   return (
-    <div style={{ padding: '40px', fontFamily: 'sans-serif' }}>
-      <h1>Физический эксперимент</h1>
-      
-      <div style={{ marginBottom: '20px', fontSize: '1.2rem' }}>
-        <Latex>{String.raw`График зависимости $F(L) = \frac{k}{L^4}$`}</Latex>
-      </div>
+    <>
+    <Graphic radius={radiusMetreParamGrath}></Graphic>
 
-      <PhysicsGraph />
+    <div>
+      <h1>
+        введите радиус магнита в метрах, по умолчанию стоит 0.01м
+      </h1>
 
-      <div style={{ marginTop: '10px', color: '#666' }}>
-        <p><Latex>Точка 1: $L = 0.045, F \approx 0.402$</Latex></p>
-        <p><Latex>Точка 2: $L = 0.1, F \approx 0.017$</Latex></p>
-      </div>
+      <Input func={TargetInput}></Input>
     </div>
+    </>
   );
 };
 
