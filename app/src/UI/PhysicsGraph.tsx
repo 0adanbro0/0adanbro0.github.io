@@ -1,60 +1,76 @@
 import React, { useEffect, useRef } from 'react';
 import functionPlot from 'function-plot';
 
-
 interface PhysicsGraphProps {
-  Radius?: number;
-  equation?: string;
+  Radius: number;
 }
 
-const PhysicsGraph: React.FC<PhysicsGraphProps> = ({Radius = 0.01, equation = `(165 * ${Math.pow(Radius, 4)}) / (x^4)` }) => {
+const PhysicsGraph: React.FC<PhysicsGraphProps> = ({ Radius }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const maxF = (165 * Math.pow(Radius, 4)) / Math.pow(0.045, 4)
-  const minDistance = Radius * 2
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const updateGraph = () => {
+      if (!containerRef.current) return;
 
-    try {
-      functionPlot({
-        target: containerRef.current,
-        width: 600,
-        height: 400,
-        grid: true,
-        xAxis: {
-          label: 'L, м',
-          domain: [minDistance, minDistance + 0.05],
-        },
-        yAxis: {
-          label: 'F, Н',
-          domain: [-0.1, maxF * 1.2],
-        },
-        data: [
-          {
-            fn: equation,
-            color: '#0000ff',
-            range: [0.038, 0.1],
+      // Очищаем и берем текущую ширину родительского контейнера
+      containerRef.current.innerHTML = '';
+      const parentWidth = containerRef.current.offsetWidth;
+      
+      // Вычисляем ширину: берем ширину контейнера, но не больше 600px
+      const width = parentWidth > 600 ? 600 : parentWidth - 20; 
+      const height = width * 0.7; // Сохраняем пропорции
+
+      const currentEquation = `(165 * ${Math.pow(Radius, 4)}) / (x^4)`;
+      const maxF = (165 * Math.pow(Radius, 4)) / Math.pow(0.045, 4);
+
+      try {
+        functionPlot({
+          target: containerRef.current,
+          width: width,
+          height: height,
+          grid: true,
+          disableZoom: true,
+          xAxis: {
+            label: 'L, м',
+            domain: [0.03, 0.12],
           },
-          {
-            points: [
-              [0.045, 0.402],
-              [0.1, 0.017],
-            ],
-            fnType: 'points',
-            graphType: 'scatter',
-            color: 'red',
+          yAxis: {
+            label: 'F, Н',
+            domain: [-0.05, Math.max(maxF * 1.2, 0.5)],
           },
-        ],
-      });
-    } catch (error) {
-      console.error('Ошибка рендеринга графика:', error);
-    }
-  }, [equation]);
+          data: [
+            {
+              fn: currentEquation,
+              color: '#0066cc',
+            },
+            {
+              points: [
+                [0.045, 0.402],
+                [0.1, 0.017],
+              ],
+              fnType: 'points',
+              graphType: 'scatter',
+              color: 'red',
+            },
+          ],
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    updateGraph();
+    
+    // Добавляем слушатель, чтобы график перерисовывался при повороте телефона
+    window.addEventListener('resize', updateGraph);
+    return () => window.removeEventListener('resize', updateGraph);
+
+  }, [Radius]);
 
   return (
     <div
       ref={containerRef} 
-      style={{background: 'white', padding: '10px', display: 'inline-block' }} 
+      style={{ width: '100%', display: 'flex', justifyContent: 'center' }} 
     />
   );
 };

@@ -1,27 +1,36 @@
+import React from 'react';
 import Latex from 'react-latex-next';
 import PhysicsGraph from './PhysicsGraph';
+import '../../css/graphicUI.css'
 
 interface GraphicProps {
     radius?: number;
 }
 
-const Graphic: React.FC<GraphicProps> = ({radius = 0.01}) =>{
-    return(
-    <div style={{ padding: '40px', fontFamily: 'sans-serif' }}>
-      <h1>Физический эксперимент</h1>
-      
-      <div style={{ marginBottom: '20px', fontSize: '1.2rem' }}>
-        <Latex>{String.raw`График зависимости $F(L) = \frac{k}{L^4}$`}</Latex>
-      </div>
+const Graphic: React.FC<GraphicProps> = ({ radius = 0.01 }) => {
+    return (
+        <div className="graphic-container">
+            <h1 className="graphic-main-title">Интерактивная модель эксперимента</h1>
+            
+            <div className="formula-display">
+                <Latex>{String.raw`График зависимости $F(L) = \frac{kR^4}{L^4}$, при $R = ${radius}$ м`}</Latex>
+            </div>
 
-      <PhysicsGraph Radius={radius}/>
+            <div className="graph-plot-area">
+                <PhysicsGraph Radius={radius} />
+            </div>
 
-      <div style={{ marginTop: '10px', color: '#666' }}>
-        <p><Latex>Точка 1: $L = 0.045, F \approx 0.402$</Latex></p>
-        <p><Latex>Точка 2: $L = 0.1, F \approx 0.017$</Latex></p>
-      </div>
-    </div>
-    )
+            <div className="graph-legend">
+                <div className="legend-item">
+                    <Latex>{String.raw`Экспериментальная точка 1: $L = 0.045, F \approx 0.402$ Н`}</Latex>
+                </div>
+                <div className="legend-item">
+                    <Latex>{String.raw`Экспериментальная точка 2: $L = 0.1, F \approx 0.017$ Н`}</Latex>
+                </div>
+                <p className="graph-note">* Синяя линия — теоретический расчет, точки — замеры в колыбели</p>
+            </div>
+        </div>
+    );
 }
 
 export default Graphic;

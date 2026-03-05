@@ -1,12 +1,13 @@
 interface InputProps {
     Content?: string;   // может быть строкой или undefined
     ClassName?: string; // может быть строкой или undefined
+    nameInp?: string;
     func:(event:any)=> void;
 }
 
-const Input = ( { func, ClassName = ''}: InputProps) => {
+const Input = ( { func, ClassName = '', nameInp = 'none'}: InputProps) => {
     return (
-        <input onChange={func!} className={`input ${ClassName}`}></input>
+        <input name={nameInp} onChange={func!} className={`input ${ClassName}`}></input>
     )
 };
 

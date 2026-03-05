@@ -1,0 +1,80 @@
+/* Общий контейнер для секций (аналог того, что мы делали для шапки) */
+.calculator-card {
+  background: #f8f9fa;       /* Светло-серый фон как в Achievements */
+  border-radius: 20px;       /* Мягкие углы */
+  padding: 40px;             /* Свободное пространство внутри */
+  margin: 30px auto;         /* Отступ между блоками */
+  max-width: 900px;          /* Ширина как у всего проекта */
+  border: 1px solid #f1f1f1;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.calculator-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  border-left: 5px solid #4A4A4A; /* Та самая серая линия акцента */
+  padding-left: 15px;
+}
+
+.formula-info {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  border: 1px solid #eee;
+}
+
+.interactive-content h1 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #444;
+  margin: 20px 0 10px 0;
+}
+
+.result-content {
+  margin-top: 40px;
+  padding: 25px;
+  background: #fff;
+  border-radius: 15px;
+  text-align: center;
+  border: 2px solid #0066cc; /* Синий акцент для результата */
+}
+
+.result-content h1 {
+  font-size: 1.8rem;
+  color: #0066cc;
+  margin: 0;
+}
+
+.formula{
+    font-size: 1.5rem;
+}
+
+.graphic-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  margin: 20px auto;
+  max-width: 900px;
+  border: 1px solid #f1f1f1;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Чуть больше тени для объема */
+  text-align: center;
+}
+
+.graphic-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+/* Обертка для самого графика, чтобы он не "прилипал" */
+.graphic-wrapper {
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
