@@ -6,7 +6,7 @@ interface InputProps {
 
 const Input = ( { func, ClassName = ''}: InputProps) => {
     return (
-        <input onInput={func!} className={`input ${ClassName}`}></input>
+        <input onChange={func!} className={`input ${ClassName}`}></input>
     )
 };
 

@@ -7,23 +7,28 @@ import { useState } from 'react';
 const App: React.FC = () => {
   const [radiusMetreParamGrath, setRadiusMetreParamGrath] = useState<number>(0.01)
 
-  function TargetInput(event:any){
-    if(event.target.value > 0.001){
-      const newRadius:number = event.target.value
+  function TargetInput(event: React.ChangeEvent<HTMLInputElement>){
+    const value:number  = Number(event.target.value)
+    if(value > 0.001){
+      const newRadius:number = value
       setRadiusMetreParamGrath(newRadius)
     }
   }
 
   return (
     <>
-    <Graphic radius={radiusMetreParamGrath}></Graphic>
+    <div style={{ width: '100vw', height:'100%', borderTop: '5px solid #4A4A4A', borderBottom: '5px solid #4A4A4A'}}>
+      <div style={{margin: '10px'}}>
+        <Graphic radius={radiusMetreParamGrath}></Graphic>
 
-    <div>
-      <h1>
-        введите радиус магнита в метрах, по умолчанию стоит 0.01м
-      </h1>
+        <div>
+          <h1>
+            введите радиус магнита в метрах, по умолчанию стоит 0.01м
+          </h1>
 
-      <Input func={TargetInput}></Input>
+          <Input func={TargetInput}></Input>
+        </div>
+      </div>
     </div>
     </>
   );
