@@ -12,9 +12,17 @@ const App: React.FC = () => {
   const [radiusMetreParamFormula, setRadiusMetreParamFormula] = useState<number>(0)
   const [distanceMetreParamFormula, setDistanceMetreParamFormula] = useState<number>(0)
 
-   const resultFormula = (radiusMetreParamFormula > 0 && distanceMetreParamFormula > 0)
-    ? (165 * Math.pow(radiusMetreParamFormula, 4)) / Math.pow(distanceMetreParamFormula, 4)
-    : 0;
+   const resultFormula = ()=>{
+    if(radiusMetreParamFormula > 100000 || distanceMetreParamFormula > 100000){
+      return ((165 * Math.pow(radiusMetreParamFormula, 4)) / Math.pow(distanceMetreParamFormula, 4)).toExponential(2)
+    }
+    else if(radiusMetreParamFormula > 0 && distanceMetreParamFormula > 0){
+      return ((165 * Math.pow(radiusMetreParamFormula, 4)) / Math.pow(distanceMetreParamFormula, 4)).toFixed(4)
+    }
+    else{
+      return 0
+    }
+   }
 
   function CountFormula(event: React.ChangeEvent<HTMLInputElement>){
     const value:number  = Number(event.target.value)
@@ -85,7 +93,7 @@ const App: React.FC = () => {
 
       <div className="result-content">
         <h1>
-          <Latex>{`$F_{\\text{взаимодействия}} = ${resultFormula.toFixed(4)} Н$`}</Latex>
+          <Latex>{`$F_{\\text{взаимодействия}} = ${resultFormula()} Н$`}</Latex>
         </h1>
       </div>
     </div>

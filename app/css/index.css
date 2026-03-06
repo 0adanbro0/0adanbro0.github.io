@@ -9,6 +9,99 @@
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
+/* Сетка для видео */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin: 30px 0;
+}
+
+.video-item {
+  background: #fbfbfd;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #f0f0f2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.video-wrapper {
+  width: 100%;
+  background: #000;
+  line-height: 0;
+}
+
+video {
+  width: 100%;
+  height: auto;
+}
+
+.video-info {
+  padding: 20px;
+}
+
+.video-info h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: #1d1d1f;
+}
+
+.video-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6e6e73;
+  line-height: 1.4;
+}
+
+/* Общая сноска под всеми видео */
+.video-footnote {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 15px 20px;
+  background: #f5f5f7;
+  border-radius: 12px;
+  border-left: 4px solid #0066cc;
+}
+
+.footnote-icon {
+  background: #0066cc;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.video-footnote p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #424245;
+}
+
+/* Адаптив для телефонов */
+@media (max-width: 600px) {
+  .video-grid {
+    grid-template-columns: 1fr; /* На мобилках строго в колонку */
+    gap: 16px;
+  }
+  
+  .section-card.video-section {
+    padding: 24px 16px;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
