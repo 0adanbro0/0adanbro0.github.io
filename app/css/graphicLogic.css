@@ -1,17 +1,14 @@
 @media (max-width: 600px) {
-  /* Убираем лишние отступы у карточки, чтобы графику было куда расти */
   .graphic-card {
     padding: 15px 5px !important; 
     margin: 10px 5px !important;
   }
 
   .graphic-wrapper {
-    padding: 0 !important; /* График вплотную к краям карточки */
+    padding: 0 !important;
     background: transparent !important;
   }
 
-  /* Увеличиваем размер шрифта меток осей (это настраивается в самой либе, 
-     но можно подтолкнуть через CSS) */
   .function-plot .axis text {
     font-size: 14px !important;
   }
@@ -24,26 +21,24 @@
 }
 }
 
-/* Общий контейнер для графика */
 .graphic-card {
-  background: #ffffff !important; /* Чисто белый */
+  background: #ffffff !important;
   border-radius: 20px;
-  padding: 40px 10px; /* Больше отступов сверху/снизу, меньше по бокам */
+  padding: 40px 10px;
   margin: 20px auto;
   max-width: 900px;
   border: 1px solid #f0f0f0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); /* Мягкая, почти незаметная тень */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
 }
 
 /* Обертка самого графика */
 .physics-graph-wrapper {
-  background: #000000 !important; /* "Мягкий" белый/серый */
+  background: #000000 !important;
   border: 1px solid #f0f0f0;
   border-radius: 15px;
   padding: 15px;
 }
 
-/* Скрываем рамки самого SVG, если они вылезают */
 .physics-graph-wrapper svg {
   background: transparent !important;
 }

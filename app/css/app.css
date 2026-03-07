@@ -1,10 +1,10 @@
-/* Общий контейнер для секций (аналог того, что мы делали для шапки) */
+
 .calculator-card {
-  background: #f8f9fa;       /* Светло-серый фон как в Achievements */
-  border-radius: 20px;       /* Мягкие углы */
-  padding: 40px;             /* Свободное пространство внутри */
-  margin: 30px auto;         /* Отступ между блоками */
-  max-width: 900px;          /* Ширина как у всего проекта */
+  background: #f8f9fa;
+  border-radius: 20px;
+  padding: 40px;
+  margin: 30px auto; 
+  max-width: 900px;
   border: 1px solid #f1f1f1;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
@@ -14,7 +14,7 @@
   font-weight: 800;
   color: #1a1a1a;
   margin-bottom: 20px;
-  border-left: 5px solid #4A4A4A; /* Та самая серая линия акцента */
+  border-left: 5px solid #4A4A4A;
   padding-left: 15px;
 }
 
@@ -39,7 +39,7 @@
   background: #fff;
   border-radius: 15px;
   text-align: center;
-  border: 2px solid #0066cc; /* Синий акцент для результата */
+  border: 2px solid #0066cc;
 }
 
 .result-content h1 {
@@ -59,7 +59,7 @@
   margin: 20px auto;
   max-width: 900px;
   border: 1px solid #f1f1f1;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Чуть больше тени для объема */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   text-align: center;
 }
 
@@ -71,7 +71,6 @@
   margin-bottom: 15px;
 }
 
-/* Обертка для самого графика, чтобы он не "прилипал" */
 .graphic-wrapper {
   background: #f8f9fa;
   border-radius: 15px;
